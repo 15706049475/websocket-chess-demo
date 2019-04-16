@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"/>
+	<title>Gobang Game Page</title>
+	<script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+	<style type="text/css">
+		canvas{
+			display: block;
+			margin: 50px auto;
+			box-shadow: -2px -2px 2px #EFEFEF,5px 5px 5px #B9B9B9;
+		}
+	</style>
+</head>
+<body>
+	<table border="1">
+		<tr height="80">
+			<td>
+				<div>
+					<input type="text" id="username" placeholder="请输入你的昵称"/>
+					<button id="login">登录</button>
+				</div>
+				<div>
+					<input type="text" id="message" placeholder="请输入要发送的内容"/>
+					<button id="sendMessage" disabled="disabled">发送</button>
+					<button id="startGame" disabled="disabled">开始游戏</button>
+				</div>
+			</td>
+			<td width="500" rowspan="2" height="500">
+				<p align="center">男 VS 女</p>
+				<canvas id="chess" width="450" height="450" onmousedown="chessCanvas(event)"></canvas>
+			</td>
+		</tr>
+		<tr height="450">
+			<td>
+				<div id="show"></div>
+			</td>
+		</tr>
+	</table>
+	<!-- JSON.parse(str); -->
+</body>
+<script type="text/javascript" src="js/chess.js"></script>
+</html>

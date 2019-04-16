@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Index Page</title>
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+</head>
+<body>
+    <button id="selectBtn">点击</button>
+</body>
+<script>
+    $('#selectBtn').click(function(){
+        //模拟的数据，后台返回的格式也是这样的
+        var result = {
+            "code": 0,
+            "msg": "操作成功",
+            "data": [
+                {
+                    "wellId": 125,
+                    "wellStateId": 844,
+                    "tubingPress": 6.7,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324077000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 845,
+                    "tubingPress": 6.8,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324133000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 846,
+                    "tubingPress": 6.8,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324137000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 847,
+                    "tubingPress": 6.9,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324193000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 848,
+                    "tubingPress": 6.9,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324197000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 849,
+                    "tubingPress": 7,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324253000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 850,
+                    "tubingPress": 7,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324257000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 851,
+                    "tubingPress": 7.1,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324313000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 852,
+                    "tubingPress": 7.1,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324317000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 853,
+                    "tubingPress": 7.2,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324373000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 854,
+                    "tubingPress": 7.2,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324377000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 855,
+                    "tubingPress": 7.3,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324433000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 856,
+                    "tubingPress": 7.3,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324437000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 857,
+                    "tubingPress": 7.4,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324493000
+                },
+                {
+                    "wellId": 125,
+                    "wellStateId": 858,
+                    "tubingPress": 7.4,
+                    "casingPress": 12.5,
+                    "linePress": 7,
+                    "rotateSpeed": 452,
+                    "remake": null,
+                    "date": 1555324497000
+                }
+            ]
+        };
+
+        //从中取数据
+        var wellStateIdArr = [];//状态点id数组
+        var tubingPressArr = [];//油压数组
+        var casingPressArr = [];//套压数组
+        var linePressArr = [];//输压数组
+        var rotateSpeedArr = [];//转速数组
+        var remakeArr = [];//备注数组
+        var dateArr = [];//工作时间数组
+        var size = null;
+        if(result.code == 0){
+            data = result.data;
+            size = data.length;
+            for(var i=0;i<size;i++){
+                wellStateIdArr.push(data[i].wellStateId);
+                tubingPressArr.push(data[i].tubingPress);
+                casingPressArr.push(data[i].casingPress);
+                linePressArr.push(data[i].linePress);
+                rotateSpeedArr.push(data[i].rotateSpeed);
+                remakeArr.push(data[i].remake);
+                dateArr.push(format(new Date(data[i].date)));
+            }
+        }
+        console.log(wellStateIdArr);
+        console.log(tubingPressArr);
+        console.log(casingPressArr);
+        console.log(linePressArr);
+        console.log(rotateSpeedArr);
+        console.log(remakeArr);
+        console.log(dateArr);
+
+    });
+    /**
+     myDate.getHours();       //获取当前小时数(0-23)
+     myDate.getMinutes();     //获取当前分钟数(0-59)
+     myDate.getSeconds();     //获取当前秒数(0-59)
+     myDate.getMilliseconds();    //获取当前毫秒数(0-999)
+     myDate.toLocaleDateString();     //获取当前日期
+     var mytime=myDate.toLocaleTimeString();     //获取当前时间
+     myDate.toLocaleString( );        //获取日期与时间
+
+     * @param date
+     */
+    var format = function(date){
+        if(date instanceof Date){
+            let year = date.getFullYear();                          //获取完整的年份(4位,1970-????)
+            let month = date.getMonth() + 1;                        //获取当前月份(0-11,0代表1月)
+            let day = date.getDate();                               //获取当前日(1-31)
+            let hour = date.getHours()==0?"00":date.getHours();     //获取当前小时数(0-23)
+            let min = date.getMinutes()==0?"00":date.getMinutes();  //获取当前分钟数(0-59)
+            let second = date.getSeconds()?"00":date.getSeconds();  //获取当前秒数(0-59)
+            return year+"/"+month+"/"+day+" "+hour+":"+min+":"+second;
+        }
+        return date.toLocaleString;
+    }
+</script>
+</html>
